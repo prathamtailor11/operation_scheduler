@@ -134,7 +134,8 @@ const OTTable = ({ selectedDate }) => {
                 </div>
             </div>
 
-            <div className="overflow-x-auto rounded-lg border border-gray-200 shadow-inner">
+            {/* Desktop Table View */}
+            <div className="hidden lg:block overflow-x-auto rounded-lg border border-gray-200 shadow-inner">
                 <table className="w-full border-collapse">
                     <thead>
                         <tr className="bg-gradient-to-r from-gray-50 to-gray-100">
@@ -202,6 +203,61 @@ const OTTable = ({ selectedDate }) => {
                         ))}
                     </tbody>
                 </table>
+            </div>
+
+            {/* Mobile Card View */}
+            <div className="lg:hidden space-y-6">
+                {operationTheaters.map(ot => (
+                    <div key={ot.id} className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                        <div className="flex items-center gap-3 mb-4 pb-3 border-b border-gray-200">
+                            <span className={`inline-block w-4 h-4 rounded-full ${ot.status === 'Available' ? 'bg-green-500 animate-pulse-slow' : 'bg-red-500'}`}></span>
+                            <h3 className="text-lg font-bold text-gray-800">{ot.ot_number}</h3>
+                            <span className={`px-2 py-1 rounded-full text-xs font-medium ${ot.status === 'Available' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                                {ot.status}
+                            </span>
+                        </div>
+
+                        <div className="grid gap-4">
+                            {datesToShow.map(date => {
+                                const otOperations = getOperationsForOT(ot.id, date);
+                                return (
+                                    <div key={date} className="bg-gray-50 rounded-lg p-4">
+                                        <div className="flex items-center justify-between mb-3">
+                                            <span className="font-semibold text-gray-700">
+                                                {new Date(date).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}
+                                            </span>
+                                            {otOperations.length === 0 && (
+                                                <span className="text-xs text-gray-500 bg-white px-2 py-1 rounded-full">Available</span>
+                                            )}
+                                        </div>
+
+                                        {otOperations.length === 0 ? (
+                                            <div className="text-sm text-gray-500 text-center py-4">
+                                                No operations scheduled
+                                            </div>
+                                        ) : (
+                                            <div className="space-y-3">
+                                                {otOperations.map(op => (
+                                                    <div
+                                                        key={op.id}
+                                                        className={`${getStatusColor(op.status)} text-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-200`}
+                                                    >
+                                                        <div className="font-bold mb-2">{op.operation_type}</div>
+                                                        <div className="text-sm opacity-95 mb-2">
+                                                            {formatTime(op.start_time)} - {formatTime(op.end_time)}
+                                                        </div>
+                                                        <div className="text-sm opacity-90">{op.patient_name}</div>
+                                                        <div className="text-sm opacity-80">{op.doctor_name}</div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                ))}
             </div>
 
             {/* Legend */}

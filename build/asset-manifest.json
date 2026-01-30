@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/operation_scheduler/static/css/main.020e5728.css",
+    "main.js": "/operation_scheduler/static/js/main.03c8be26.js",
+    "index.html": "/operation_scheduler/index.html",
+    "main.020e5728.css.map": "/operation_scheduler/static/css/main.020e5728.css.map",
+    "main.03c8be26.js.map": "/operation_scheduler/static/js/main.03c8be26.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.020e5728.css",
+    "static/js/main.03c8be26.js"
+  ]
+}

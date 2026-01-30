@@ -164,27 +164,7 @@ const DatabaseViewer = () => {
                     ))}
                 </div>
 
-                {/* Table Schema */}
-                {currentTable.schema && currentTable.schema.length > 0 && (
-                    <div className="mb-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
-                        <h3 className="font-semibold text-blue-800 mb-2 flex items-center gap-2">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            Table Schema
-                        </h3>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
-                            {currentTable.schema.map((col) => (
-                                <div key={col.cid} className="bg-white p-2 rounded border border-blue-100">
-                                    <div className="font-semibold text-gray-800">{col.name}</div>
-                                    <div className="text-xs text-gray-500">{col.type}</div>
-                                    {col.pk === 1 && <span className="text-xs text-primary-600">PK</span>}
-                                    {col.notnull === 1 && <span className="text-xs text-red-600">NOT NULL</span>}
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                )}
+                {/* Table Schema removed as requested */}
 
                 {/* Table Data */}
                 <div className="overflow-x-auto rounded-lg border border-gray-200">
